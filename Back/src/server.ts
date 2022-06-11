@@ -13,5 +13,5 @@ AppDataSource.initialize()
 const app = express();
 
 app.listen(666, () => {
-    console.log("serviço rodando perfeitamente");
+    console.log("Service is running!");
 })

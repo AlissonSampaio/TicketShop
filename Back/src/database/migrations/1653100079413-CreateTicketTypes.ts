@@ -1,11 +1,11 @@
 import { MigrationInterface, QueryRunner, Table } from "typeorm"
 
-export class CreateEvents1652190007967 implements MigrationInterface {
+export class CreateTicketTypes1653100079413 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
-                name: "event",
+                name: "ticket-types",
                 columns: [
                     {
                         name: "id",
@@ -18,41 +18,37 @@ export class CreateEvents1652190007967 implements MigrationInterface {
                         isUnique: true
                     },
                     {
-                        name: "description",
-                        type: "varchar"
-                    },
-                    {
-                        name: "tickets",
-                        type: "int"
+                        name: "event_id",
+                        type: "uuid"
                     },
                     {
                         name: "price",
                         type: "varchar"
                     },
                     {
-                        name: "time",
-                        type: "time"
-                    },
-                    {
-                        name: "local",
-                        type: "varchar"
-                    },
-                    {
-                        name: "date",
-                        type: "date"
+                        name: "quantity",
+                        type: "numeric"
                     },
                     {
                         name: "created_at",
                         type: "timestamp",
                         default: "now()"
                     },
+                ],
+                foreignKeys: [
+                    {
+                        name: "fk_ticket-types_event",
+                        columnNames: ["event_id"],
+                        referencedTableName: "events",
+                        referencedColumnNames: ["id"]
+                    }
                 ]
             })
         )
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable("event");
+        await queryRunner.dropTable("ticket-types");
     }
 
 }
