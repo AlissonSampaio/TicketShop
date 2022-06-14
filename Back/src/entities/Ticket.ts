@@ -1,7 +1,7 @@
 import { Entity, Column, CreateDateColumn, PrimaryColumn, ManyToOne, JoinColumn, OneToOne } from "typeorm";
 import { v4 as uuid } from "uuid";
-import { User as user } from "./User";
-import { TicketTypes as ticketType } from "./TicketType";
+import { User } from "./User";
+import { TicketTypes } from "./TicketType";
 
 @Entity("tickets")
 export class Ticket {
@@ -15,19 +15,19 @@ export class Ticket {
     @Column()
     user_id: string;
 
-    @ManyToOne(() => user)
+    @ManyToOne(() => User)
     @JoinColumn({name: "user_id"})
-    user: user;
+    user: User;
 
     @Column()
     ticket_id: string;
 
-    @OneToOne(() => ticketType)
-    @JoinColumn({name: "ticket_id"})
-    ticketType: ticketType;
+    // @OneToOne(() => TicketTypes)
+    // @JoinColumn({name: "ticket_id"})
+    // ticketType: TicketTypes;
 
-    @Column()
-    ticket_type_id: ticketType;
+    // @Column()
+    // ticket_type_id: TicketTypes;
 
     @Column()
     cpf: string;

@@ -1,6 +1,6 @@
 {
     "scripts": {
-        "start": "ts-node src/index.ts",
+        "start": "ts-node src/server.ts",
         "typeorm": "ts-node-dev node_modules/.bin/typeorm"
     },
     "dependencies": {

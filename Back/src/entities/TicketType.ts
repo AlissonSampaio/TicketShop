@@ -1,6 +1,6 @@
 import { Entity, Column, CreateDateColumn, PrimaryColumn, Timestamp, ManyToOne, JoinColumn } from "typeorm";
 import { v4 as uuid } from "uuid";
-import { Event as event } from "./Event";
+import { Event } from "./Event";
 
 @Entity("ticket-types")
 export class TicketTypes {
@@ -14,9 +14,9 @@ export class TicketTypes {
     @Column()
     event_id: string;
 
-    @ManyToOne(() => event)
+    @ManyToOne(() => Event)
     @JoinColumn({name: "event_id"})
-    event: event;
+    event: Event;
 
     @Column()
     local: string;
