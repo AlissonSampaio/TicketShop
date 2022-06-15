@@ -20,14 +20,11 @@ export class Ticket {
     user: User;
 
     @Column()
-    ticket_id: string;
+    ticket_type_id: string;
 
-    // @OneToOne(() => TicketTypes)
-    // @JoinColumn({name: "ticket_id"})
-    // ticketType: TicketTypes;
-
-    // @Column()
-    // ticket_type_id: TicketTypes;
+    @OneToOne(() => TicketTypes)
+    @JoinColumn({name: "ticket_type_id"})
+    ticketType: TicketTypes;
 
     @Column()
     cpf: string;

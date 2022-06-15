@@ -20,9 +20,6 @@ export class Event {
     local: string;
 
     @Column()
-    role: string;
-
-    @Column()
     date: Date;
 
     @CreateDateColumn()

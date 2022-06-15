@@ -1,6 +1,7 @@
 import { MigrationInterface, QueryRunner, Table } from "typeorm"
 
-export class CreateTickets1653103184529 implements MigrationInterface {
+
+export class CreateTickets1655209897567 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
@@ -17,7 +18,7 @@ export class CreateTickets1653103184529 implements MigrationInterface {
                         type: "uuid"
                     },
                     {
-                        name: "ticket-type_id",
+                        name: "ticket_type_id",
                         type: "uuid"
                     },
                     {
@@ -35,7 +36,7 @@ export class CreateTickets1653103184529 implements MigrationInterface {
                     },
                     {
                         name: "fk_tickets_ticket-type",
-                        columnNames: ["ticket-type_id"],
+                        columnNames: ["ticket_type_id"],
                         referencedTableName: "ticket-types",
                         referencedColumnNames: ["id"]
                     }
@@ -47,6 +48,5 @@ export class CreateTickets1653103184529 implements MigrationInterface {
     public async down(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.dropTable("tickets");
     }
-
 
 }
