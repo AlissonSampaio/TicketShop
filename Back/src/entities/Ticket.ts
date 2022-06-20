@@ -22,27 +22,9 @@ export class Ticket {
     @Column()
     ticket_type_id: string;
 
-    @OneToOne(() => TicketTypes)
+    @ManyToOne(() => TicketTypes)
     @JoinColumn({name: "ticket_type_id"})
     ticketType: TicketTypes;
-
-    @Column()
-    cpf: string;
-
-    @Column()
-    role: string;
-
-    @Column()
-    gender: string;
-
-    @Column()
-    telephone: string;
-
-    @Column()
-    birth_date: string;
-
-    @CreateDateColumn()
-    created_at: Date
 
     constructor() {
         if(!this.id) {}

@@ -1,50 +1,52 @@
 import { Request, Response } from "express";
-import { EventService } from "../services/EventService";
+import { TicketService } from "../services/TicketService";
 
-export class EventController{
+export class TicketController{
     async create(request: Request, response: Response){
-        const { name, description, time, local, date } = request.body;
+        const { name, user_id, ticket_type_id } = request.body
 
-        const service = new EventService();
+        const service = new TicketService();
 
-        const result =  await service.create({ name, description, time, local, date });
+        const result = await service.create({
+            name, user_id, ticket_type_id
+        })
 
         if(result instanceof Error){
             return response.status(400).json(result.message);
         }
 
-        return response.json;
+        return response.json();
     }
 
     async getAll(request: Request, response: Response) {
-        const service = new EventService();
+        const service = new TicketService();
 
-        const event = await service.getAll();
+        const ticket = await service.getAll();
 
-        return response.json(event);
+        return response.json(ticket);
     }
 
     async get(request: Request, response: Response){
         const { id } = request.params;
 
-        const service = new EventService();
+        const service = new TicketService();
 
-        const event = await service.get(id);
+        const ticket = await service.get(id);
 
-        if(!event) {
-            return response.status(400).json("Events does not exists!");
+        if(!ticket) {
+            return response.status(400).json("Ticket does not exists!");
         }
 
-        return response.json(event);
+        return response.json(ticket);
     }
 
     async update(request: Request, response: Response){
         const { id} = request.params; 
-        const { name, description, time, local, date } = request.body
+        const { name, user_id, ticket_type_id } = request.body
 
-        const service = new EventService();
+        const service = new TicketService();
 
-        const result = await service.update({id, name, description, time, local, date});
+        const result = await service.update({id, name, user_id, ticket_type_id});
 
         if(result instanceof Error){
             return response.status(400).json(result.message);
@@ -56,7 +58,7 @@ export class EventController{
     async delete(request: Request, response: Response){
         const { id } = request.params;
 
-        const service = new EventService();
+        const service = new TicketService();
 
         const result = await service.delete(id);
 

@@ -1,5 +1,3 @@
-import { errorMonitor } from "events";
-import { EventEmitter } from "stream";
 import { AppDataSource } from "../database/data-source";
 import { Event } from "../entities/Event";
 type EventRequest = {

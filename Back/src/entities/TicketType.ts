@@ -19,9 +19,6 @@ export class TicketTypes {
     event: Event;
 
     @Column()
-    local: string;
-
-    @Column()
     quantity: number;
 
     @Column()
